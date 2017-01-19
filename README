@@ -1,0 +1,40 @@
+           __  __ ____   _____  ______  _____ __  __ _
+          |  \/  | __ ) / _ \ \/ /___ \| ____|  \/  | |
+          | |\/| |  _ \| | | \  /  __) |  _| | |\/| | |
+          | |  | | |_) | |_| /  \ / __/| |___| |  | | |___
+          |_|  |_|____/ \___/_/\_\_____|_____|_|  |_|_____|
+
+  WHAT IS MBOX2EML
+====================
+Have you ever bricked your email server?
+Have you ever got the backup of your emails in mbox format?
+Need to import only some of them in your new server simply using your
+GUI client (eg. Thunderbird?)
+Now you can easily convert your mbox huge file into several eml files
+with your emails, and then open and decide wether to import them or
+not.
+
+Maybe a sed rule can be used? Maybe an awk script? Maybe some other
+sort of utility? Couldn't find answer, so done uglyly by myself. Uglyly
+is uglier than ugly itself. :-) And also doesn't exists.
+
+  BUILD
+=========
+  g++ mbox2eml.cpp
+  KISS Simple Stupid one-file app, uses only C++ STL
+
+  USAGE
+=========
+  ./mbox2eml < MBoxFile
+
+  produces one file per every email contained in MBoxFile
+  WARNING: further runs of this program will overwrite older files!
+
+  LICENSE
+===========
+This program is free software and is distributed under the terms of
+GNU GPL version 3 or any other further version.
+
+  AUTHOR
+==========
+  giomba at glgprograms dot it
