@@ -6,35 +6,30 @@
 
   WHAT IS MBOX2EML
 ====================
-Have you ever bricked your email server?
-Have you ever got the backup of your emails in mbox format?
-Need to import only some of them in your new server simply using your
-GUI client (eg. Thunderbird?)
-Now you can easily convert your mbox huge file into several eml files
-with your emails, and then open and decide wether to import them or
-not.
-
-Maybe a sed rule can be used? Maybe an awk script? Maybe some other
-sort of utility? Couldn't find answer, so done uglyly by myself. Uglyly
-is uglier than ugly itself. :-) And also doesn't exists.
+Do you need to import some .eml email with your graphical client but the only thing you have is a huge mbox backup file?
+mbox2eml is a KISS (Keep it simple stupid) one-file app, which uses only C++ STL to extract one .eml file for every message contained in your mbox file.
 
   BUILD
 =========
   g++ mbox2eml.cpp
-  KISS Simple Stupid one-file app, uses only C++ STL
 
   USAGE
 =========
   ./mbox2eml < MBoxFile
 
   produces one file per every email contained in MBoxFile
-  WARNING: further runs of this program will overwrite older files!
+
+  KNOWN BUGS
+==============
+- Further runs of this program will overwrite older files
+- Does not care about text encoding
+- Could break inline-PGP
 
   LICENSE
 ===========
-This program is free software and is distributed under the terms of
-GNU GPL version 3 or any other further version.
+This program is free software and is distributed under the terms of GNU GPL version 3 or any other further version.
 
   AUTHOR
 ==========
-  giomba at glgprograms dot it
+  giomba at linux dot it
+
