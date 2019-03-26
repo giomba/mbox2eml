@@ -15,12 +15,13 @@
 #include <cstring>
 #include <cmath>
 #include <fstream>
+#include <regex>
 
 /* Commonly used const strings */
 const std::string FILENAME_EXTENSION = ".eml";
 const std::string FILENAME_PREFIX = "mbox2eml-out-";
 
-const std::string FROM_STRING = "From ";
+const std::regex SEPARATOR_R = std::regex("^From .*@.*\\..*( ){1,}[A-Z][a-z]{2} [A-Z][a-z]{2} \\d{1,2} \\d{1,2}:\\d{1,2}:\\d{1,2} \\d{4}$");
 const std::string SUBJECT_STRING = "Subject: ";
 
 /* FSM States */
@@ -46,18 +47,22 @@ int main(int argc, char** argv) {
           status = ST_END;
           break;
         }
-        if (line.substr(0, FROM_STRING.length()).compare(FROM_STRING) == 0) {
+        // if (line.substr(0, FROM_STRING.length()).compare(FROM_STRING) == 0) {
+        if (std::regex_match(line, SEPARATOR_R)) {
           status = ST_SPONGE;
         }
         break;
       case ST_SPONGE:
         sponge = sponge + line + '\n';
         std::getline(std::cin, line);
-        if (line.substr(0, SUBJECT_STRING.length()).compare(SUBJECT_STRING) == 0) subject = line.substr(SUBJECT_STRING.length());
-        if (line.substr(0, FROM_STRING.length()).compare(FROM_STRING) == 0 || ! std::cin.good()) {
+        if (line.substr(0, SUBJECT_STRING.length()).compare(SUBJECT_STRING) == 0) {
+            subject = line.substr(SUBJECT_STRING.length());
+        }
+        if (std::regex_match(line, SEPARATOR_R) || ! std::cin.good()) {
           filename = FILENAME_PREFIX + std::string(4 - (int)log10(index), '0') + std::to_string(index) + '-' + subject + FILENAME_EXTENSION;
           save(filename, sponge);
           ++index;
+          subject.clear();
           sponge.clear();
           if (! std::cin.good()) status = ST_END;
         }
