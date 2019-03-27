@@ -1,0 +1,13 @@
+.TH MBOX2EML 1
+.SH NAME
+mbox2eml \- extracts .eml files from mbox databases
+.SH SYNOPSIS
+.B mbox2eml
+.SH DESCRIPTION
+.B mbox2eml
+reads standard input and threats it as a database file in mbox format; then extracts every email into an .eml file
+.SH EXAMPLES
+.B mbox2eml
+< ~/mail/Drafts
+.SH KNOWN BUGS
+\- can be fooled by messages containing a line identical to a separator line, even if it is very rare to found such a line
