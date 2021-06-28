@@ -3,7 +3,7 @@ ifeq ($(PREFIX),)
 endif
 
 mbox2eml: mbox2eml.cpp
-	g++ -o mbox2eml -std=c++11 -Wall mbox2eml.cpp
+	g++ $RPM_OPT_FLAGS $RPM_LD_FLAGS -o mbox2eml -std=c++11 -Wall mbox2eml.cpp
 
 install: mbox2eml
 	install -d $(DESTDIR)$(PREFIX)/bin
