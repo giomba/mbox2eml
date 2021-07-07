@@ -7,7 +7,9 @@ It uses C++ STL and some POSIX primitives.
 
 ## Build
 ```
+cd src
 make
+make install
 ```
 
 ## Usage
